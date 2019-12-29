@@ -1,0 +1,29 @@
+<div ng-hide="!authenticated" class="brand clearfix" ng-controller="themeCtrl">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 scrol-auto">
+			
+				<div class="top-nav-wrap">
+
+					<div title="לוח הבקרה" class="dashboard-icon"><a href="#/dashboard"><i class="fa fa-dashboard dashboard"></i></a></div>
+					<div title="רשימת מלאי" class="dashboard-icon"><a href="#/inventory-list"><i class="fa fa-barcode inventory-list" aria-hidden="true"></i></a></div>
+					<div title="הוספת מלאי" class="dashboard-icon"><a href="#/add-product"><i class="fa fa-cart-plus add-product" aria-hidden="true"></i></a></div>
+					<div title="מכירות מלאי" class="dashboard-icon"><a href="#/sale"><i class="fa fa-credit-card sale" aria-hidden="true"></i></a></div>
+					<div title="מועדון לקוחות" class="dashboard-icon"><a href="#/client-list"><i class="fa fa-users client-list" aria-hidden="true"></i></a></div>
+					<div title="הוספת לקחות" class="dashboard-icon"><a href="#/add-client"><i class="fa fa-user-plus add-client" aria-hidden="true"></i></a></div>
+					<div title="ימי הולדת" class="dashboard-icon"><a href="#/messages"><i class="fa fa-bell-o messages" aria-hidden="true"></i></a></div>
+					<div title="משימות" class="dashboard-icon"><a href="#/todoo-list"><i class="fa fa-list-ul todoo-list" aria-hidden="true"></i></a></div>
+					<div title="הגדרות" class="dashboard-icon"><a href="#/setting"><i class="fa fa-cogs setting" aria-hidden="true"></i></a></div>
+					<!--
+					<div class="dashboard-icon"><a><i class="fa fa-bar-chart reports" aria-hidden="true"></i></a></div>
+					<div class="dashboard-icon"><a><i class="fa fa-calculator calendar" aria-hidden="true"></i></a></div>
+					<div class="dashboard-icon"><a><i class="fa fa-clock-o employee-attendance" aria-hidden="true"></i></a></div>
+					-->
+					<div title="יציאה" class="dashboard-icon"><a ng-click="logout();"><i class="fa fa-sign-out logout" aria-hidden="true"></i></a></div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>			
+</div>

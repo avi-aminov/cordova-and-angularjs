@@ -1,0 +1,44 @@
+
+<div class="login-page bk-img">
+	<div class="form-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h1 class="text-center text-bold">הרשמה</h1>
+					<div class="well row pt-2x pb-3x bk-light login-bg ">
+						<div class="col-md-8 col-md-offset-2">
+							<form action="" class="mt">
+
+								<div class="form-group label-floating is-empty">
+									<span class="css-tooltip right-top small" aria-label="המערכת תשלח קוד אימות לאימייל זה. במידה ולא קיבלתם אימייל קרוב לוודאי זה נמצא בספאם "><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+												
+									<label for="i5" class="control-label">אימייל</label>
+										<input ng-model="signup.email" type="text" placeholder="אימייל" class="form-control mb">
+									<span ng-show="signupForm.email.$error.email" class="help-block">Email is not valid</span>
+								</div>
+
+
+								<div class="form-group label-floating is-empty">
+									<label for="i5" class="control-label">סיסמה</label>
+										<input ng-model="signup.pass" type="password" placeholder="סיסמה" class="form-control mb">
+									<span data-ng-show="signupForm.pass.$dirty && signupForm.pass.$invalid" class="help-block">Enter Password</span>
+								</div>
+
+								<div class="form-group label-floating is-empty">
+									<label for="i5" class="control-label">אימות סיסמה</label>
+										<input ng-model="signup.pass2" password-match="signup.pass2" type="password" placeholder="אימות סיסמה" class="form-control mb">
+									<span data-ng-show="signupForm.pass2.$dirty && signupForm.pass2.$error.required" class="help-block"> Enter password again</span>
+								</div>
+
+								<button class="btn btn-primary btn-raised btn-block" ng-click="signUp(signup)" data-ng-disabled="signupForm.$invalid" type="submit">הרשמה</button>
+							</form>
+						</div>
+					</div>
+					<div class="text-center">
+						<a href="#/login" class=" blue-color">התחברות</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

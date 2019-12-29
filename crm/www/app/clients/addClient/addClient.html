@@ -1,0 +1,99 @@
+<div class="ts-main-content">
+	<div class="content-wrapper">
+		<div class="container-fluid">
+
+			<div class="row">
+				<br>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel panel-default">
+								<div class="panel-heading nav-tabs">הוסף לקוח</div>
+								<div class="panel-body">
+
+									<div class="form">
+										<div class="col-md-6">
+											
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">שם פרטי</label>
+												<input data-ng-class="{error: (client.firstname == '' && checkParam)}" data-ng-model="client.firstname" type="text" class="form-control">
+												<span class="help-block"></span>
+											</div>
+
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">שם משפחה</label>
+												<input data-ng-class="{error: (client.lastname == '' && checkParam)}" data-ng-model="client.lastname" type="text" class="form-control">
+												<span class="help-block"></span>
+											</div>
+
+
+											<div class="form-group label-floating is-empty date-birth">
+												<label for="i5" class="control-label">תאריך לידה</label>
+												<input data-ng-class="{error: (client.birth_date == '' && checkParam)}" id="date-birth" data-ng-model="client.birth_date" type="date" class="form-control">
+												<span class="help-block"></span>
+											</div>
+
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">מדרג</label>
+												<select data-ng-model="client.gender" class="form-control">
+													<option value="זכר">זכר</option>
+													<option value="נקבה">נקבה</option>
+												</select>
+												<span class="help-block"></span>
+											</div>
+
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">טלפון</label>
+												<input data-ng-model="client.phone" type="text" class="form-control text-left">
+												<span class="help-block"></span>
+											</div>	
+
+										</div>
+
+										<div class="col-md-6">
+
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">אימייל</label>
+												<input data-ng-model="client.email" type="text" class="form-control text-left">
+												<span class="help-block"></span>
+											</div>	
+
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">אתר</label>
+												<input data-ng-model="client.website" type="text" class="form-control text-left">
+												<span class="help-block"></span>
+											</div>	
+
+
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">מקור הגעה</label>
+												<input data-ng-model="client.facebook" type="text" class="form-control">
+												<span class="help-block"></span>
+											</div>
+
+											<div class="form-group label-floating is-empty">
+												<label for="i5" class="control-label">סטטוס</label>
+												<span class="css-tooltip right-top small" aria-label="ניתן להוסיף סטטוסים דרך עמוד ההגדרות (בלוח הבקרה) בהגדרות לקוחות"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+												<select data-ng-model="client.status" class="form-control">
+													<option data-ng-repeat="status in clientStatus">{{status.name}}</option>
+												</select>
+												<span class="help-block"></span>
+											</div>
+
+											<div class="form-group ">
+												<label>&nbsp;</label> <br>
+												<a ng-disabled="disabledValidator" data-ng-click="saveClient(client, false)" class="btn btn-raised btn-primary">שמור וצא</a>
+												<a ng-disabled="disabledValidator" data-ng-click="saveClient(client, true)" class="btn btn-raised btn-warning">שמור והמשך להוסיף</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

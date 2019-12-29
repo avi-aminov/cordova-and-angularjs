@@ -1,0 +1,151 @@
+<div class="ts-main-content">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading nav-tabs">עריכת מוצר</div>
+                                <div class="panel-body">
+                                    <div class="form">
+                                        <div class="col-md-3">
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">*ברקוד</label>
+                                                <input data-ng-class="{error: (product.sku == '' && checkParam)}" data-ng-model="product.sku" type="text" class="form-control text-left"
+                                                    disabled>
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">מספר חשבונית</label>
+                                                <input data-ng-model="product.invoic_number" type="text" class="form-control text-left" disabled>
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">*שם</label>
+                                                <input data-ng-class="{error: (product.name === '' && checkParam)}" data-ng-model="product.name" type="text" class="form-control">
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">תיאור</label>
+                                                <input data-ng-model="product.description" type="text" class="form-control text-left">
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-3">
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">כמות</label>
+                                                <input data-ng-model="product.stock_quantity" type="number" min="0" class="form-control text-left">
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">קטגוריה</label>
+                                                <select data-ng-model="product.category" class="form-control">
+                                                    <option data-ng-repeat="categorie in categories">{{categorie.name}}</option>
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">ספק</label>
+                                                <span class="css-tooltip right-top small" aria-label="ניתן להוסיף ספקים דרך עמוד ההגדרות (בלוח הבקרה) בהגדרות מלאי"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                                                <select data-ng-model="product.supplier" class="form-control">
+                                                    <option data-ng-repeat="supplier in suppliers">{{supplier.name}}</option>
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <span class="css-tooltip right-top small" aria-label="פרמטר זה קובע אם המוצר היה ניתן להנחות לספירת רווחים בדוחות"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                                                    <label> 
+                                                    <input ng-checked="getDiscountChecked()" data-ng-model="product.is_can_discount"  type="checkbox" checked>
+                                                    <span class="checkbox-material"><span class="check"></span></span> ניתן להנחה
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-3">
+
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label> 
+                                                    <input ng-checked="product.is_vat" data-ng-model="product.is_vat"  type="checkbox">
+                                                    <span class="checkbox-material"><span class="check"></span></span> מוצר חובה במע"מ
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">מחיר קניה לפני מע"מ</label>
+                                                <input ng-keyup="priceAfterVat(product.buy_price)" data-ng-class="{error: ((product.buy_price == '' || product.buy_price == null) && checkParam)}"
+                                                    data-ng-model="product.buy_price" type="number" min="0" step="1" class="form-control text-left">
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">מחיר לצרכן</label>
+                                                <input ng-keyup="earnPrice()" data-ng-class="{error: ((product.sale_price == '' || product.sale_price == null)&& checkParam)}"
+                                                    data-ng-model="product.sale_price" type="number" min="0" step="1" class="form-control text-left">
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">% הנחה</label>
+                                                <input ng-keyup="earnPrice()" data-ng-model="product.discount_percent" type="number" min="0" step="1" class="form-control text-left">
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-3">
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">מחיר לאחר מע''מ</label>
+                                                <span class="css-tooltip right-top small" aria-label="מע''מ ניתן לנהל דרך עמוד ההגדרות (בלוח הבקרה) בהגדרות כללי"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                                                <input data-ng-model="product.price_after_vat" type="text" class="form-control text-left" disabled>
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group  is-empty">
+                                                <label for="i5" class="control-label">רווח ב%</label>
+                                                <input data-ng-model="product.earn" type="text" class="form-control text-left" disabled>
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label> 
+                                                    <input ng-checked="product.status" data-ng-model="product.status"  type="checkbox">
+                                                    <span class="checkbox-material"><span class="check"></span></span> פעיל
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>&nbsp;</label><br>
+                                                <a data-ng-click="updateProduct(product)" class="btn btn-raised btn-primary">עדכן וצא</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

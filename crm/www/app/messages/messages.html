@@ -1,0 +1,63 @@
+<div class="ts-main-content">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+
+					<br>
+					
+					<h2 class="page-title">ימיי הולדת ללקוחות</h2>					
+					<div class="row">
+					
+						<div class="list-group panel">
+						
+							<div class="list-group-item ">היום</div>
+							
+							<div href="#" class="list-group-item" ng-repeat="t in tody"> 
+								<button data-ng-click="openClient(t.id)" type="button" class="btn btn-default"><i class="fa fa-folder-open" aria-hidden="true"></i></button> 
+								<!--
+								<button data-ng-click="sendEmail(t.email)" type="button" class="btn btn-default"><i class="fa fa-envelope" aria-hidden="true"></i></button> 
+								-->
+								&nbsp;&nbsp;
+								{{t.firstname}} &nbsp; {{t.lastname}} &nbsp;|&nbsp; {{t.birth_date}}
+							</div>
+							
+						</div>
+						
+						
+						<div class="list-group panel">
+							<div class="list-group-item ">שבוע</div>
+							
+							<div href="#" class="list-group-item" ng-repeat="t in inWeek"> 
+								<button data-ng-click="openClient(t.id)" type="button" class="btn btn-default"><i class="fa fa-folder-open" aria-hidden="true"></i></button> 
+								<!--
+								<button data-ng-click="sendEmail(t.email)" type="button" class="btn btn-default"><i class="fa fa-envelope" aria-hidden="true"></i></button> 
+								-->
+								&nbsp;&nbsp;
+								{{t.firstname}} &nbsp; {{t.lastname}} &nbsp;|&nbsp; {{t.birth_date}}
+							</div>
+							
+						</div>
+
+						<div class="list-group panel">
+							<div class="list-group-item ">חודש</div>
+							
+							<div href="#" class="list-group-item" ng-repeat="t in inMon"> 
+								<button data-ng-click="openClient(t.id)" type="button " class="btn btn-default"><i class="fa fa-folder-open" aria-hidden="true"></i></button> 
+								<!--
+								<button data-ng-click="sendEmail(t.email)" type="button" class="btn btn-default"><i class="fa fa-envelope" aria-hidden="true"></i></button> 
+								-->
+								&nbsp;&nbsp;
+								{{t.firstname}} &nbsp; {{t.lastname}} &nbsp;|&nbsp; {{t.birth_date}}
+							</div>
+							
+						</div>
+						
+					</div>
+
+				</div>
+            </div>
+        </div>
+    </div>
+</div>

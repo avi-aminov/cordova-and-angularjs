@@ -1,0 +1,85 @@
+<div class="ts-main-content">
+	<div class="content-wrapper">
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="clear"></div>
+					<br>
+					<p>
+						<a href="#/add-client" class="btn btn-raised btn-primary">הוסף לקוח</a>
+						<a 	class="btn btn-raised" 
+							title="Export Table" 
+							ng-click='csv.generate()' 
+							ng-href="{{ csv.link() }}" 
+							download="clients.csv">
+							<i class="glyphicon glyphicon-new-window"></i> יצוא
+						</a>
+
+						
+					</p>
+
+
+					<h2 class="page-title">לקוחות</h2>
+
+					<div class="row">
+
+						
+						
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-12">
+
+									<div ng-controller="dashboardCtrl">
+
+										<table export-csv="csv" separator=";" id="dynamic-table" class="export-to-csv table table-striped table-bordered table-hover" datatable="ng"
+											dt-options="dtOptions">
+											<thead>
+												<tr>
+													<th class=" hidden-xs"> # </th>
+													<th>שם לקוח</th>
+													<th>טלפון</th>
+													<th class="hidden-xs">תאריך לידה</th>
+													<th class="hidden-xs">מגדר</th>
+													<th class="hidden-xs"><i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i> פעילות אחרונה </th>
+													<th class="hidden-xs">סה"כ</th>
+													<th class="hidden-xs">סטטוס</th>
+													<th>פעולות</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr ng-repeat="client in clients">
+													<td class=" hidden-xs"> {{client.id}} </td>
+													<td>{{client.firstname}} {{client.lastname}}</td>
+													<td><a href="tel://{{client.phone}}">{{client.phone}}</a></td>
+													<td class="hidden-xs"> {{client.birth_date }} </td>
+													<td class="hidden-xs">{{ client.gender }}</td>
+
+													<td class="hidden-xs">{{client.last_visit_date | date : ' HH:mm , dd-MM-yyyy'}}</td>
+													<td class="hidden-xs"> {{client.valium | currency : ' ₪ ' : 2}} </td>
+													<td class="hidden-xs"> {{client.status}} </td>
+													<td>
+														<div class="action-buttons">
+															<a href="#/edit-client/{{client.id}}" class="blue"><i class="ace-icon fa fa-pencil-square-o bigger-130"></i></a>
+															<a href="#/client-statistics/{{client.id}}" class="red"> <i class="ace-icon fa fa-bar-chart bigger-130"></i> </a>
+															<a data-ng-click="deleteClient($index, client.id)" class="red red-color"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- PAGE CONTENT ENDS -->
+						</div>
+						<!-- /.col -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

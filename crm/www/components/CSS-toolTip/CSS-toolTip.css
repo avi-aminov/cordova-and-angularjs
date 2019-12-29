@@ -1,0 +1,169 @@
+.css-tooltip{
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+}
+
+.css-tooltip:hover::after,
+.css-tooltip:hover::before{
+	display:block;
+	z-index: 99999;
+	font-size: 14px;
+	font-weight:100;
+}
+
+.css-tooltip::before{
+	content: '';
+    width: 0px;
+    height: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+	border-bottom: 5px solid #2f2f2f;
+	position: absolute;
+	display:none;
+}
+
+.css-tooltip::after{
+	content: attr(aria-label);
+	width: 250px;
+    padding: 10px;
+    color: #fff;
+    background: #202020;
+	position: absolute;
+	display:none;
+	-webkit-box-shadow: 1px 1px 4px #797979; 
+    -moz-box-shadow: 1px 1px 4px #797979;
+    box-shadow: 1px 1px 4px #797979;
+}
+
+.small.css-tooltip::after{
+	width: 150px;
+}
+
+.css-tooltip.bottom::before{
+    left: 50%;
+    top: calc(100% + 10px);
+}
+
+.css-tooltip.bottom::after{
+    left: calc(50% - 125px);
+    top: calc(100% + 15px);
+}
+
+
+
+
+
+.small.css-tooltip.bottom::after{
+    left: calc(50% - 75px);
+}
+
+.css-tooltip.top::before{
+	left: 50%;
+    bottom: calc(100% + 10px);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #2f2f2f;
+    border-bottom: 0;
+}
+
+.css-tooltip.top::after{
+    left: calc(50% - 125px);
+    bottom: calc(100% + 15px);
+	-webkit-box-shadow: 1px -1px 4px #797979; 
+    -moz-box-shadow: 1px -1px 4px #797979;
+    box-shadow: 1px -1px 4px #797979;
+}
+
+.small.css-tooltip.top::after{
+    left: calc(50% - 75px);
+}
+
+.css-tooltip.left-top::before{
+    right: calc(100% + 20px);
+    top: 50%;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #2f2f2f;
+    border-right: 0;
+}
+
+.css-tooltip.left-top::after{
+    right: calc(100% + 25px);
+    top: 0;
+	-webkit-box-shadow: -1px -1px 4px #797979; 
+    -moz-box-shadow: -1px -1px 4px #797979;
+    box-shadow: -1px -1px 4px #797979;
+}
+
+.css-tooltip.right-top::before{
+    left: calc(100% + 20px);
+    top: 50%;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #2f2f2f;
+    border-left: 0;
+}
+
+.css-tooltip.right-top::after{
+	left: calc(100% + 25px);
+    top: 0;
+	-webkit-box-shadow: 1px 1px 4px #797979; 
+    -moz-box-shadow: 1px 1px 4px #797979;
+    box-shadow: 1px 1px 4px #797979;
+}
+
+
+
+/*
+.css-tooltip._left::after{
+    top: 30px;
+    right: 0;
+    left: inherit;
+}
+
+.css-tooltip._right::after{
+    top: 30px;
+    left: 0;
+}
+
+.css-tooltip._left._top::after{
+    top: -10px;
+    left: inherit;
+    right: 35px;
+}
+
+.css-tooltip._left._top::after{
+	-webkit-box-shadow: -5px -5px 4px #aaa;
+    -moz-box-shadow: -5px -5px 4px #aaa;
+    box-shadow: -5px -5px 4px #aaa;
+}
+
+.css-tooltip._left._top::before{
+    bottom: 5px;
+    right: 25px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #2f2f2f;
+    left: inherit;
+    top: inherit;
+}
+
+.css-tooltip._right._top::after{
+	-webkit-box-shadow: 5px -5px 4px #aaa;
+    -moz-box-shadow: 5px -5px 4px #aaa;
+    box-shadow: 5px -5px 4px #aaa;
+    top: -8px;
+    left: 35px;
+}
+
+.css-tooltip._right._top::before{
+    bottom: 5px;
+    right: -15px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #2f2f2f;
+    left: inherit;
+    top: inherit;
+}
+*/

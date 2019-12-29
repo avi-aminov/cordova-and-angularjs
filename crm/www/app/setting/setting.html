@@ -1,0 +1,219 @@
+<div class="ts-main-content">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <div class="setting panel panel-primary">
+                                <div class="panel-heading">הגדרות מערכת</div>
+                                <div class="panel-body">
+                                    <ul class="nav nav-tabs">
+                                        <li ng-class="{ active: settingTabIsSet(3) }"><a href ng-click="setSettingTab(3)">משתמש</a></li>
+                                        <li ng-class="{ active: settingTabIsSet(0) }"><a href ng-click="setSettingTab(0)">כללי</a></li>
+                                        <li ng-class="{ active: settingTabIsSet(1) }"><a href ng-click="setSettingTab(1)">מלאי</a></li>
+                                        <li ng-class="{ active: settingTabIsSet(2) }"><a href ng-click="setSettingTab(2)">לקוחות</a></li>
+                                    </ul>
+                                    <br>
+
+                                    <div ng-show="settingTabIsSet(3)">
+                                            <ul class="nav nav-tabs">
+                                                <li ng-class="{ active: userSettingTabIsSet(0) }"><a href ng-click="userSetSettingTab(0)">פרטים אישיים</a></li>
+                                                <li ng-class="{ active: userSettingTabIsSet(2) }"><a href ng-click="userSetSettingTab(2)">חידוש סיסמה</a></li>
+                                            </ul>
+
+                                            <div class="tab-content ">
+                                                <div ng-show="userSettingTabIsSet(0)">
+
+                                                    <h4>פרטים אישיים</h4>
+                                                        <div class="form">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>שם פרטי</label>
+                                                                    <input  data-ng-model="user_data.firstname" type="text" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>שם משפחה</label>
+                                                                    <input  data-ng-model="user_data.lastname" type="text" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>תאריך לידה</label>
+                                                                    <input  id="date-birth" data-ng-model="user_data.birthDate"
+                                                                        type="date" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>מדרג</label>
+                                                                    <select data-ng-model="user_data.gender" class="form-control">
+                                                                        <option value="1">זכר</option>
+                                                                        <option value="0">נקבה</option>
+                                                                    </select>
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                            <div class="col-md-6">
+
+                                                                <div class="form-group">
+                                                                    <label>טלפון</label>
+                                                                    <input data-ng-model="user_data.phone" type="text" class="form-control text-left">
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label>אימייל</label>
+                                                                    <input data-ng-model="user_data.email" type="text" class="form-control text-left" disabled>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>אתר</label>
+                                                                    <input data-ng-model="user_data.website" type="text" class="form-control text-left">
+                                                                </div>
+
+                                                                <div class="form-group ">
+                                                                    <label>&nbsp;</label> <br>
+                                                                    <a ng-disabled="disabledValidator" data-ng-click="updateDetails(user_data)" class="btn btn-raised btn-primary">שמור שינויים</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                                <div ng-show="userSettingTabIsSet(2)">
+                                                    <h4>חידוש סיסמה</h4>
+
+
+
+                                                    <div class="form">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>סיסמה</label>
+                                                                    <input  ng-model="reset.pass"  type="password" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>סיסמה חדשה</label>
+                                                                    <input  data-ng-model="reset.new_pass" type="password" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                                
+          
+                                                            
+
+                                                            <div class="col-md-12">
+
+                                                                <div class="form-group">
+                                                                    <label>שוב סיסמה</label>
+                                                                    <input  data-ng-model="reset.again_pass" type="password" class="form-control">
+                                                                </div>
+
+                                                                <div class="form-group ">
+                                                                    <label>&nbsp;</label> <br>
+                                                                    <a ng-disabled="disabledValidator" data-ng-click="updatePass(reset)" class="btn btn-raised btn-primary">שמור שינויים</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <div ng-show="settingTabIsSet(0)">
+
+                                        <h4>כללי</h3>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label>% מע''מ</label>
+                                                    <input data-ng-model="vat.vat" type="text" class="form-control guide-vat">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>&nbsp;</label><br>
+                                                    <a data-ng-click="saveGeneralSettings()" class="btn btn-raised btn-primary">שמור</a>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <div ng-show="settingTabIsSet(1)">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div>
+                                                    <ul class="nav nav-tabs">
+                                                        <li ng-class="{ active: stockSettingTabIsSet(1) }"><a href ng-click="stockSetSettingTab(1)">קטגוריות</a></li>
+                                                        <li ng-class="{ active: stockSettingTabIsSet(2) }"><a href ng-click="stockSetSettingTab(2)">ספקים</a></li>
+                                                    </ul>
+                                                    <br>
+                                                    <div class="tab-content">
+                                                        <div ng-show="stockSettingTabIsSet(1)">
+                                                            <h4>קטגוריות</h3>
+                                                                <div class="form">
+                                                                    <div class="row">
+
+                                                                        <div class="form-group min-h-Category" data-ng-repeat="categorie in categories">
+                                                                            <div class="col-sm-4 col-xs-8">
+                                                                                <input class="form-control" data-ng-blur="saveCategoryChange(categorie.id, categorie.name)" data-ng-model="categorie.name"
+                                                                                    type="text" name="" placeholder="הכנס קטגוריה">
+                                                                            </div>
+                                                                            <div class="col-sm-8 col-xs-4">
+                                                                                <button ng-click="removeCategoryChoice(categorie.id)" type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12 margin-top-40">
+                                                                            <button ng-click="addNewCategory()" type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                        </div>
+
+                                                        <div ng-show="stockSettingTabIsSet(2)">
+                                                            <h4>ספקים</h3>
+                                                                <div>
+                                                                    <div class="form-group min-h-Category" data-ng-repeat="supplier in suppliers">
+                                                                        <div class="col-sm-4 col-xs-8">
+                                                                            <input class="form-control" data-ng-blur="saveSupplierChange(supplier.id, supplier.name)" data-ng-model="supplier.name" type="text"
+                                                                                name="" placeholder="הכנס ספק">
+                                                                        </div>
+                                                                        <div class="col-sm-8 col-xs-4">
+                                                                            <button ng-click="removeSupplierChoice(supplier.id)" type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-12 margin-top-40">
+                                                                        <button ng-click="addNewSupplier()" type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i></button>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="settingTabIsSet(2)">
+
+                                        <h4>סטטוסים</h3>
+                                            <div>
+                                                <div class="form-group min-h-Category" data-ng-repeat="status in clientStatus">
+                                                    <div class="col-sm-4 col-xs-8">
+                                                        <input class="form-control" data-ng-blur="saveStatusChange(status.id, status.name)" data-ng-model="status.name" type="text"
+                                                            name="" placeholder="הכנס קטגוריה">
+                                                    </div>
+                                                    <div class="col-sm-8 col-xs-4">
+                                                        <button ng-click="removeStatusChoice(status.id)" type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12  margin-top-40">
+                                                    <button ng-click="addNewStatus()" type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i></button>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

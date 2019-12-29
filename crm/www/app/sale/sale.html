@@ -1,0 +1,104 @@
+<div class="ts-main-content">
+	<div class="content-wrapper">
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-md-12 sale">
+
+					<div class="row">
+						<div class="col-md-5 p-list">
+							<div>
+
+								<h2>
+									<span class="css-tooltip left-top block-tip small" aria-label="יש לבחור רשימת מוצרים והגורם אליו המוצרים יוצאים (נמכרים) ולבצע מכירה"><i class="fa fa-info-circle" aria-hidden="true"></i></span>									רשימת מלאי
+								</h2>
+
+								<table id="dynamic-table" class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+									<thead>
+										<tr>
+											<th class=" hidden-xs"> # </th>
+											<th> שם מוצר</th>
+											<th>מחיר</th>
+											<th>% הנחה</th>
+											<th>ניתן להנחה</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="product in products | filter:{status:1} | filter:stockQuantityFilter" data-ng-click="addProduct(product)">
+							
+											<td class=" hidden-xs"> {{product.sku}}</td>
+											<td>{{product.name}}</td>
+											<td>{{product.sale_price | currency : ' ₪ ' : 2 }}</td>
+											<td> {{product.discount_percent }}% </td>
+											<td> {{ (product.is_can_discount == 0 ? "לא" : "כן") }} </td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-md-7">
+
+							<h2>
+								<span class="css-tooltip block-tip left-top small" aria-label="סל מוצרים לביצוע מכירה נוכחית"><i class="fa fa-info-circle" aria-hidden="true"></i></span>								מלאי מוצרים בסל
+							</h2>
+
+							<table id="dynamic-table" class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+								<thead>
+									<tr>
+
+										<th class=" hidden-xs"> # </th>
+										<th> שם מוצר</th>
+										<th>מחיר</th>
+										<th>כמות</th>
+										<th>X</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="product in saleProductList">
+
+
+										<td class=" hidden-xs"> {{product.sku}} </td>
+										<td>{{product.product_name}}</td>
+										<td>{{product.sale_price | currency : ' ₪ ' : 2 }}</td>
+										<td>
+											<a data-ng-click="quantityAction($index, product.id, 'plus', product)" class="red"> <i class="ace-icon fa fa-plus-square bigger-130"></i> </a>
+											{{product.stock_quantity}}
+											<a data-ng-click="quantityAction($index, product.id, 'minus', product)" class="red"> <i class="ace-icon fa fa-minus-square bigger-130"></i> </a>
+										</td>
+										<td>
+											<div class="action-buttons">
+												<a data-ng-click="deleteProduct($index, product)" class="red red-color"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="form-group">
+
+								<label class="col-sm-4 control-label">
+									 <span class="css-tooltip block-tip left-top small" aria-label="חפש לקוח אליו אתה רוצה לשייך מכירה  נוכחית"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+									הוסף לקוח מהרשימה</label>
+
+								<div class="col-sm-8">
+									<angucomplete id="ex1" placeholder="חפש לקוח" pause="100" selectedobject="selectedClient" localdata="ac_clients" searchfields="name"
+										titlefield="name" minlength="1" inputclass="form-control form-control-small" matchclass="highlight" />
+								</div>
+							</div>
+							<br>
+							<br>
+
+							<div class="col-md-12 left setPurchase">
+
+								<div data-ng-click="deleteThisPurchase()" class="btn btn-raised btn-danger">  מחק סל קניות  <i class="fa fa-trash" aria-hidden="true"></i> </div>
+								<div ng-disabled="disabledValidator" data-ng-click="returnsThisPurchase()" class="btn btn-raised btn-info">החזרה לספק <i class="fa fa-undo" aria-hidden="true"></i> </div>
+								<div ng-disabled="disabledValidator" data-ng-click="setPurchase(true)" class="btn btn-raised btn-warning">מכירה ללקוח מזדמן <i class="fa fa-user-times" aria-hidden="true"></i> </div>
+								<div ng-disabled="disabledValidator" data-ng-click="setPurchase(false)" class="btn btn-raised btn-success">בצע מכירה <i class="fa fa-check" aria-hidden="true"></i> </div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

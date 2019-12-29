@@ -1,0 +1,46 @@
+<div class="ts-main-content">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+			<br>
+            <div class="row todolist">
+
+                <div class="col-md-12">
+				<input type="text" class="form-control add-todo" placeholder="משימה חדשה" ng-model="new_task">
+					<button ng-disabled="disabledValidator" data-ng-click="addTask(new_task)" class="btn btn-raised btn-success">הוסף משימה</button>
+					<div class="row">
+						<div class="col-md-6">
+						 	<h3>משימות פתוחות </h3>
+							<div class="form-group" data-ng-repeat="task in tasks | filter:{done:0} | filter:{is_delete:0} ">
+								<div class="col-sm-8 col-xs-8">
+									<input class="form-control" ng-focus="temp(task.name)" data-ng-blur="saveTaskChange(task)" data-ng-model="task.name" type="text"  name="" placeholder="הכנס קטגוריה">		
+								</div>
+								<div class="col-sm-4 col-xs-4">
+									<button ng-click="taskDone(task)" type="button" class="btn btn-primary"><i class="fa fa-check"></i></button>
+									<button ng-click="delTask(task)" type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+						 	<h3>משימות סגורות</h3>
+							<div class="form-group" data-ng-repeat="task in tasks | filter:{done:1} | filter:{is_delete:0}">
+								<div class="col-sm-8 col-xs-8">
+									<input disabled class="form-control" data-ng-model="task.name" type="text"  name="" placeholder="הכנס קטגוריה">		
+								</div>
+								<div class="col-sm-4 col-xs-4">
+									<button ng-click="taskRevers(task)" type="button" class="btn btn-primary"><i class="fa fa-reply"></i></button>
+									<button ng-click="delTask(task)" type="button" class="btn btn-danger"><i class="fa fa-times"></i></button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+
+				</div>
+				
+            </div>
+        </div>
+    </div>
+</div>
+

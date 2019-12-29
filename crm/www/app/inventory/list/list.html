@@ -1,0 +1,98 @@
+<div class="ts-main-content">
+	<div class="content-wrapper">
+		<div class="container-fluid add-product">
+
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+					<p>
+						<a href="#/add-product" class="btn btn-raised btn-primary">הוסף מוצר</a>
+						<a 	class="btn btn-raised" 
+							title="Export Table" 
+							ng-click='csv.generate()' 
+							ng-href="{{ csv.link() }}" 
+							download="inventori.csv">
+							<i class="glyphicon glyphicon-new-window"></i> יצוא
+						</a>
+					</p>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-12">
+									<div ng-controller="dashboardCtrl">
+										<table export-csv="csv" separator=";" id="dynamic-table" class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+											<thead>
+												<tr>
+													<th class="hidden-xs">סטטוס</th>
+													<th class="hidden-480">ברקוד</th>
+													<th> שם מוצר</th>
+													<th class="hidden-480">מחיר</th>
+													<th class="hidden-xs">כמות</th>
+													<th class="hidden-xs"><i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i> ספק </th>
+													<th class="hidden-xs">קטגוריה</th>
+													<th class="hidden-xs">מידע נוסף</th>
+													
+													<th>פעולות</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr ng-repeat="product in products">
+													<td class="hidden-xs">
+
+														<div class="form-group checkbox">
+															<div class="checkbox">
+																<label> 
+																<input ng-click="updateStatus(product.id, product.status)" ng-checked="product.status" data-ng-model="product.status" type="checkbox">
+																<span class="checkbox-material"><span class="check"></span></span>
+																</label>
+															</div>
+														</div>
+
+													</td>
+
+													<td class="hidden-480">
+														{{product.sku}}
+													</td>
+													<td>{{product.name}}</td>
+													<td class="hidden-480">{{product.sale_price | currency : ' ₪ ' : 2 }}</td>
+													<td class="hidden-xs">
+														<a data-ng-click="quantityAction($index, product.id, 'plus')" class="red"> <i class="ace-icon fa fa-plus-circle bigger-130"></i> </a>
+														{{product.stock_quantity}}
+														<a data-ng-click="quantityAction($index, product.id, 'minus')" class="red"> <i class="ace-icon fa fa-minus-circle bigger-130"></i> </a>
+													</td>
+													<td class="hidden-xs">{{product.supplier}}</td>
+													<td class="hidden-xs">
+														{{product.category}}
+													</td>
+													<td class="hidden-xs">
+														{{product.description}}
+													</td>
+
+													<td>
+														<div class="action-buttons">
+															<a href="#/edit-product/{{product.id}}" class="blue"><i class="ace-icon fa fa-pencil-square-o bigger-130"></i></a>
+															<a href="#/product-statistics/{{product.id}}" class="red"> <i class="ace-icon fa fa-bar-chart bigger-130"></i> </a>
+															<a data-ng-click="deleteProduct($index, product)" class="red red-color"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+
+										</table>
+
+									</div>
+								</div>
+							</div>
+							<!-- PAGE CONTENT ENDS -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>

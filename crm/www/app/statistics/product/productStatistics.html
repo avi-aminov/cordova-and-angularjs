@@ -1,0 +1,109 @@
+<div class="ts-main-content">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h2 class="page-title"> סטטיסטיקת מכירת מוצר - {{products[0].product_name}} </h2>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div>
+                                        <table id="dynamic-table" class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                            <thead>
+                                                <tr>
+                                                    <th>-</th>
+                                                    <th>שם לקוח</th>
+                                                    <th class="hidden-xs">מין</th>
+                                                    <th>סטטוס לקוח</th>
+                                                    <th class="hidden-xs">מחיר עלות</th>
+                                                    <th class="hidden-xs">ניתן להנחה</th>
+                                                    <th class="hidden-xs">% הנחה</th>
+                                                    <th>מחיר לצרכן</th>
+                                                    <th class="hidden-xs">כמות</th>
+                                                    <th class="hidden-xs">תאריך קניה</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr data-ng-repeat="product in products">
+                                                    <td>
+                                                        <a href="#/client-statistics/{{product.c_user_id}}" class="red"> <i class="ace-icon fa fa-folder-open-o bigger-130"></i> </a>
+                                                    </td>
+                                                    <td>{{product.lastname}} {{product.firstname}}</td>
+                                                    <td class="hidden-xs">{{product.gender}}</td>
+                                                    <td>{{product.status}}</td>
+                                                    <td class="hidden-xs">{{product.buy_price}} ₪</td>
+                                                    <td class="hidden-xs">{{ (product.is_can_discount == 0 ? "לא" : "כן") }}</td>
+                                                    <th class="hidden-xs">{{product.discount_percent}} %</th>
+                                                    <th>{{product.sale_price}} ₪</th>
+                                                    <td class="hidden-xs">{{product.product_count}}</td>
+                                                    <td class="hidden-xs">{{ product.sale_create * 1000 | date : ' HH:mm - dd/MM/yyyy' }}</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="clear"></div>
+                                <br><br>
+
+                                <div class="col-md-6">
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading nav-tabs">מכירות בחתך לקוח</div>
+                                        <div class="panel-body">
+                                            <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options"></canvas>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading nav-tabs">חזרות</div>
+                                        <div class="panel-body">
+                                            <div>
+                                                <table id="dynamic-table" class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ברקוד</th>
+                                                            <th>שם מוצר</th>
+                                                            <th class="hidden-xs">מחיר לצרכן</th>
+                                                            <th class="hidden-xs">כמות</th>
+                                                            <th>תאריך חזרה</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr data-ng-repeat="return in returns">
+                                                            <td>{{return.sku}}</td>
+                                                            <td>{{return.product_name}}</td>
+                                                            <th class="hidden-xs">{{return.sale_price | currency:"":0 }} ₪</th>
+                                                            <td class="hidden-xs">{{return.product_count}}</td>
+                                                            <td>{{ return.sale_create * 1000 | date : ' HH:mm - dd/MM/yyyy'}}</td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- PAGE CONTENT ENDS -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+					
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

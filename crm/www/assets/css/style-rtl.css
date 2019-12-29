@@ -1,0 +1,34 @@
+html{text-align: right; direction: rtl;}
+.btn.text-left{text-align:right;}
+.content-format ul:not(.social-awesome) li{margin:0 2.571428571rem 0 1rem;}
+.content-format ul:not(.social-awesome).list-unstyled li{margin:0 24px 0 0;}
+.content-format .fa{margin-left:10px;}
+.content-format blockquote{border-right:4px solid rgba(51, 51, 51, 0.17);padding-right:0.7778em;}
+.content-format blockquote.double-quote{border-right:none;padding-right:1em;}
+.btn-social{padding-right:58px;}
+.chart-dot-list{margin-right:20px;}
+.chart-dot-list li:before{margin-left:6px;}
+.brand .logo{float:right;}
+.brand .menu-btn{float:left;}
+.brand .ts-profile-nav{float:left;}
+.brand .ts-profile-nav li{float:right;}
+.brand .ts-profile-nav li ul{left:0;}
+.brand .ts-profile-nav .ts-account .fa-angle-down{float:left;}
+.brand .ts-profile-nav .ts-account .ts-avatar{margin-left:10px;}
+.ts-sidebar-menu li i{margin-left:10px;}
+.ts-sidebar-menu > .open > a{border-right:3px solid #37a6c4;}
+.more{float:left;}
+table.table-bordered.dataTable th, table.table-bordered.dataTable td {text-align: right;}
+.back-to-dashboard i {left: 7px;}
+.back-to-history i {left: 5px;}
+@media only screen and (min-width: 768px) {
+	.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 { float: right; }
+}
+.dashboard .panel {margin: 0;}
+.form-group.label-static label.control-label, 
+.form-group.label-floating.is-focused label.control-label, 
+.form-group.label-floating:not(.is-empty) label.control-label {left: inherit;}
+.checkbox .checkbox-material .check:before, 
+label.checkbox-inline .checkbox-material .check:before { margin-right: 10px; margin-left: inherit;}
+.checkbox label::before {right: 22px;top: 5px;}
+.float-left{float:left;}
