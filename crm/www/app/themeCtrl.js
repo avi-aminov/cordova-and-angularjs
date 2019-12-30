@@ -1,11 +1,12 @@
 app.controller('themeCtrl', function ($scope, $rootScope, $location, $window, Data, Notification) {
 
-	$scope.navBar = false;
+	$scope.navBar = true;
 	$scope.toglleNav = function () {
 		$scope.navBar = !$scope.navBar;
 	};
 
 	$scope.logout = function () {
+		/*
 		if (localStorage.getItem("userlogin")) {
 			localStorage.removeItem("userlogin");
 		}
@@ -17,12 +18,11 @@ app.controller('themeCtrl', function ($scope, $rootScope, $location, $window, Da
 
 			}
 		});
+		*/
 	}
 
 	$scope.back = function () {
 		$window.history.back();
 	};
-	
 
-	
 });

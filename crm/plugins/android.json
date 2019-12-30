@@ -8,7 +8,7 @@
   },
   "installed_plugins": {
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.crm.aminov"
+      "PACKAGE_NAME": "com.bizcrm.aminov"
     }
   },
   "dependent_plugins": {}

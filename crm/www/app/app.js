@@ -17,7 +17,7 @@ var app = angular.module('crmApp',
 app.config(['$routeProvider', 'localStorageServiceProvider', function ($routeProvider, localStorageServiceProvider) {
 
 
-	localStorageServiceProvider.setPrefix('crmApp').setStorageType('sessionStorage').setNotify(true, true)
+	localStorageServiceProvider.setPrefix('crmApp').setStorageType('localStorage').setNotify(true, true)
 
 
 	$routeProvider
@@ -62,7 +62,7 @@ app.config(['$routeProvider', 'localStorageServiceProvider', function ($routePro
 
 		.when('/product-statistics/:product_id', { title: 'client-statistics', templateUrl: 'app/statistics/product/productStatistics.html', controller: 'productStatisticsCtrl', })
 
-		.otherwise({ redirectTo: '/login' });
+		.otherwise({ redirectTo: '/dashboard' });
 		
 
 }]);
@@ -79,6 +79,7 @@ app.run(function ($rootScope, $location, Data, appGetServices) {
 			'phone': 'phone'
 		}
 
+		/*
 		Data.ajaxPost('user/session', data).then(function (results) {
 			var url = $location.path();
 			if (results.id && results.id != '') {
@@ -98,6 +99,7 @@ app.run(function ($rootScope, $location, Data, appGetServices) {
 				}
 			}
 		});
+		*/
 				
 		$rootScope.rtl = _rtl;
 		$rootScope.translation = translation;

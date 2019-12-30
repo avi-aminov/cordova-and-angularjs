@@ -35,6 +35,7 @@ app.controller('loginCtrl',
 
     };
 
+	/*
 	
 	Data.ajaxPost('user/session', data).then(function (results) {
 		var url = $location.path();
@@ -52,6 +53,7 @@ app.controller('loginCtrl',
 			}
 		}
 	});
+	*/
 	
 
 	function validateEmail(email) {
