@@ -52,7 +52,7 @@
 											<tbody>
 												<tr ng-repeat="client in clients">
 													<td class=" hidden-xs"> {{client.id}} </td>
-													<td>{{client.firstname}} {{client.lastname}}</td>
+													<td>{{client.firstname}} {{client.lastname}} </td>
 													<td><a href="tel://{{client.phone}}">{{client.phone}}</a></td>
 													<td class="hidden-xs"> {{client.birth_date }} </td>
 													<td class="hidden-xs">{{ client.gender }}</td>
@@ -62,8 +62,8 @@
 													<td class="hidden-xs"> {{client.status}} </td>
 													<td>
 														<div class="action-buttons">
-															<a href="#/edit-client/{{client.id}}" class="blue"><i class="ace-icon fa fa-pencil-square-o bigger-130"></i></a>
-															<a href="#/client-statistics/{{client.id}}" class="red"> <i class="ace-icon fa fa-bar-chart bigger-130"></i> </a>
+															<a data-ng-click="editClient($index, client.id)" class="blue"><i class="ace-icon fa fa-pencil-square-o bigger-130"></i></a>
+															<a data-ng-click="clientStatus($index, client.id)" class="red"> <i class="ace-icon fa fa-bar-chart bigger-130"></i> </a>
 															<a data-ng-click="deleteClient($index, client.id)" class="red red-color"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 														</div>
 													</td>

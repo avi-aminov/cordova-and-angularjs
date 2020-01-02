@@ -1,5 +1,5 @@
 app.controller('clientListCtrl', function (
-	$scope, Data, Notification, localStorageService, DTOptionsBuilder, appGetServices) {
+	$scope, $location, $rootScope, Notification, localStorageService, DTOptionsBuilder, appGetServices) {
 
 	// DataTables configurable options
 	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(20).withOption('bLengthChange', true);
@@ -10,12 +10,15 @@ app.controller('clientListCtrl', function (
 		$scope.clients = data;
 	});
 
-	
+	$scope.editClient = function(index, id){
+		$location.path(`/edit-client/${id}`); 
+	};
+
+	$scope.clientStatus = function(index, id){
+		$location.path(`/client-statistics/${id}`); 
+	};
+
 	$scope.deleteClient = function (index, id) {
-
-
-		debugger;
-		
 		var isDelete = confirm(translation[_lang].sure_you_want_to_delete_this_product);
 		if (isDelete == true) {
 			var deleteSuccessfully = false;
@@ -38,23 +41,6 @@ app.controller('clientListCtrl', function (
 				Notification.error({ message: translation[_lang].client_is_not_deleted });
 				$scope.disabledValidator = false;
 			}
-
-
-
-
-			/*
-			Data.ajaxPost('clients/deleteClient', deleteClient).then(function (results) {
-				if (results.status == "success") {
-					localStorageService.remove('clients');
-					Notification.success({ message: translation[_lang].client_deleted_successfully });
-					$scope.disabledValidator = false;
-				} else {
-					Notification.error({ message: translation[_lang].client_is_not_deleted });
-					$scope.disabledValidator = false;
-				}
-			});
-			*/
 		}
 	}
-	
 });
