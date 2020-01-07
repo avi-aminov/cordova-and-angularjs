@@ -21,9 +21,9 @@ app.config(
 			localStorageServiceProvider.setPrefix('crmApp').setStorageType('localStorage').setNotify(true, true)
 			$routeProvider
 			.when('/', { 
-				title: 'Dashboard', 
-				templateUrl: 'app/dashboard/dashboard.html', 
-				controller: 'dashboardCtrl', 
+				title: 'Login', 
+				templateUrl: 'app/user/login/login.html', 
+				controller: 'loginCtrl',
 				role: '0' 
 			})
 			.when('/login', { 
@@ -121,13 +121,40 @@ app.config(
 				templateUrl: 'app/statistics/product/productStatistics.html', 
 				controller: 'productStatisticsCtrl', 
 			})
-			.otherwise({ redirectTo: '/dashboard' });
+			.otherwise({ redirectTo: '/login' });
 		}
 	]
 );
-
 app.run(function ($rootScope, $location, Data, appGetServices) {
+
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
+		
+		data = {
+			'method': 'crmApp',
+			'fullname': 'fullname',
+			'email': 'email',
+			'phone': 'phone'
+		}
+
+		Data.ajaxPost('user/session', data).then(function (results) {
+			var url = $location.path();
+			if (results.id && results.id != '') {
+				$rootScope.authenticated = true;
+				$rootScope.id = results.id;
+				$rootScope.email = results.email;
+				if (url == '/signup' || url == '/login' || url == '/forgot-password' || url == '/') {
+					appGetServices.clearAll(function(data){});
+					$location.path('/dashboard');
+				}
+			} else {
+				$rootScope.authenticated = false;		
+				if (url == '/signup' || url == '/login' || url == '/forgot-password') {
+					$location.path(url);
+				} else {
+					$location.path('/login');
+				}
+			}
+		});
 				
 		$rootScope.rtl = _rtl;
 		$rootScope.translation = translation;
@@ -135,4 +162,3 @@ app.run(function ($rootScope, $location, Data, appGetServices) {
 		
 	});
 });
-

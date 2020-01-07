@@ -1,4 +1,4 @@
-app.controller('themeCtrl', function ($scope, $rootScope, $location, $window, Data, Notification) {
+app.controller('themeCtrl', function ($scope, $rootScope, $location, $window, Data, Notification, fbService) {
 
 	$scope.navBar = true;
 	$scope.toglleNav = function () {
@@ -6,6 +6,23 @@ app.controller('themeCtrl', function ($scope, $rootScope, $location, $window, Da
 	};
 
 	$scope.logout = function () {
+
+
+		if (localStorage.getItem("userlogin")) {
+			localStorage.removeItem("userlogin");
+		}
+
+
+		fbService.logOut(function(data){
+			if (data.msg == "successful") {
+				Notification.success({ message: translation[_lang].you_are_disconnected });
+				$location.path('login');
+			} else {
+
+			}
+		});
+
+
 		/*
 		if (localStorage.getItem("userlogin")) {
 			localStorage.removeItem("userlogin");

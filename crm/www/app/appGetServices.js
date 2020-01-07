@@ -1,18 +1,8 @@
 app.factory('appGetServices', function (Data, localStorageService) {
 
+
     // all parameter saved in session storage
     return {
-
-        generatUniqeId: function (){
-            var result           = '';
-            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            var charactersLength = characters.length;
-            for ( var i = 0; i < 16; i++ ) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            return result;
-        },
-
 
         //delete-all
         clearAll: function (callback) {
@@ -74,7 +64,16 @@ app.factory('appGetServices', function (Data, localStorageService) {
         getClientStatus: function (callback) {
             var data;
             if (!localStorageService.get('client-status')) {
-                if (typeof callback === "function") callback(false);
+                Data.ajaxPost('setting/getStatus', {}).then(function (results) {
+                   if (results.status === "success") {
+                        data = results.client_status;
+                        localStorageService.set('client-status', data);
+                        data = localStorageService.get('client-status');
+                        if (typeof callback === "function") callback(data);
+                    } else {
+                        if (typeof callback === "function") callback(false);
+                    }
+                });
             } else {
                 data = localStorageService.get('client-status');
                 if (typeof callback === "function") callback(data);
@@ -148,11 +147,20 @@ app.factory('appGetServices', function (Data, localStorageService) {
         //clients
         getClients: function (callback) {
             var data;
-            if (localStorageService.get('clients')) {
+            if (!localStorageService.get('clients')) {
+                Data.ajaxPost('clients/getClientsList', {}).then(function (results) {
+                    if (results.status === "success") {
+                        data = results.clients;
+                        localStorageService.set('clients', data);
+                        data = localStorageService.get('clients');
+                        if (typeof callback === "function") callback(data);
+                    } else {
+                        if (typeof callback === "function") callback(false);
+                    }
+                });
+            } else {
                 data = localStorageService.get('clients');
                 if (typeof callback === "function") callback(data);
-            } else {
-                if (typeof callback === "function") callback(false);
             }
         },
 

@@ -1,8 +1,7 @@
 app.controller('addClientCtrl', function (
-	$scope, $location, $route, $rootScope, Data, Notification, localStorageService, DTOptionsBuilder, appGetServices ) {
+	$scope, $location, $route, Data, Notification, localStorageService, DTOptionsBuilder, appGetServices ) {
 
 	$scope.client = {
-		id: appGetServices.generatUniqeId(),
 		firstname: '',
 		lastname: '',
 		birth_date: '',
@@ -26,8 +25,6 @@ app.controller('addClientCtrl', function (
 		$scope.clientStatus = data;
 	});
 
-
-	
 	$scope.saveClient = function (p, andMore) {
 		if ($scope.client.firstname == '' || $scope.client.lastname == '' || $scope.client.birth_date == '') {
 			$scope.checkParam = true;
@@ -35,24 +32,7 @@ app.controller('addClientCtrl', function (
 		} else {
 			$scope.disabledValidator = true;
 			console.log($scope.client);
-			appGetServices.getClients(function (data) {
-		
-				let temp;
-				if(!data){
-					temp = [];
-					temp.push($scope.client);
-				}else{
-					temp = data;
-					temp.push($scope.client);
-				}
-				
-				localStorageService.set('clients', temp);
-				$location.path('/client-list');
-				Notification.success({ message: translation[_lang].update_successful });
-				$scope.disabledValidator = false;
-			});
 
-			/*
 			Data.ajaxPost('clients/addNewClient', p).then(function (results) {
 				if (results.status == "success") {
 					localStorageService.remove('clients');
@@ -68,8 +48,6 @@ app.controller('addClientCtrl', function (
 					$scope.disabledValidator = false;
 				}
 			});
-			*/
 		}
 	};
-
 });
